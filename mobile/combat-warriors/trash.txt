@@ -1,0 +1,112 @@
+local Library = loadstring(Game:HttpGet("https://raw.githubusercontent.com/lazykane/sync-mobile/main/wizzard-ui"))()
+
+
+local cw = Library:NewWindow("Sync Mobile 1.1v")
+
+local idk = cw:NewSection("Combat Warriors")
+local cred = cw:NewSection("info")
+local sa = cw:NewSection("Silent Aim - For Strong Phone")
+local esp = cw:NewSection("ESP - For Strong Phone")
+
+
+
+------Credits
+cred:CreateButton("made by kane#9695", function()
+setcopyboard("kane#9695")
+end)
+
+cred:CreateButton("Discord", function()
+setcopyboard("https://discord.gg/tFjU6aCzbq")
+end)
+
+cred:CreateButton("Changelogs", function()
+loadstring(Game:HttpGet("https://raw.githubusercontent.com/lazykane/sync-mobile/main/games/combat-warriors/changelogs"))()
+end)
+
+------Idk
+idk:CreateTextbox("Cam FOV", function(text)
+        game:GetService'Workspace'.Camera.FieldOfView = (text)
+end)
+
+idk:CreateButton("Auto Parry", function(value)
+		loadstring(Game:HttpGet("https://raw.githubusercontent.com/lazykane/sync-mobile/main/games/combat-warriors/auto-parry.txt"))()
+end)
+
+-----Sailent
+
+loadstring(Game:HttpGet("https://raw.githubusercontent.com/lazykane/sync-mobile/main/games/combat-warriors/sailent"))()
+
+local satoggle = sa:CreateToggle("Silent Aim Toggle", function(v)
+SilentSettings.Main.Enabled = v
+end)
+
+sa:CreateDropdown("Hit Part", {"Head", "Torso", "Random"}, "Head", function(V)
+SilentSettings.Main.TargetPart = V
+end)
+
+local FovToggle = sa:CreateToggle("Fov Circle", function(v)
+SilentSettings.FOVSettings.Visible = v
+fov_circle.Visible = v
+end)
+
+local slider1 = sa:CreateSlider("Fov Radius", 5, 5, 1000, 1, function(v)
+SilentSettings.FOVSettings.Radius = v
+fov_circle.Radius = v
+end)
+
+local Colorpicker1 = sa:CreateColorpicker("Fov Color", Color3.new(1, 1, 1), function(v)
+fov_circle.Color = v
+end)
+
+--- [[ Esp
+
+esp:CreateToggle("Enable ESP", ESPSettings.PlayerESP.Enabled, function(v)
+    ESPSettings.PlayerESP.Enabled = v
+
+    ESPFramework.Color = ESPSettings.ESPColor
+    ESPFramework.ToolColor = ESPSettings.ToolColor
+    ESPFramework.Tracers = ESPSettings.PlayerESP.TracersOn
+    ESPFramework.Names = ESPSettings.PlayerESP.NamesOn
+    ESPFramework.Health = ESPSettings.PlayerESP.HealthOn
+    ESPFramework.Distance = ESPSettings.PlayerESP.DistanceOn
+    ESPFramework.Tool = ESPSettings.PlayerESP.ToolOn
+    ESPFramework.Boxes = ESPSettings.PlayerESP.BoxesOn
+    ESPFramework.FaceCamera = ESPSettings.PlayerESP.FaceCamOn
+    ESPFramework:Toggle(ESPSettings.PlayerESP.Enabled)
+end, "PlayerESPsToggle")
+
+esp:CreateToggle("Face Camera", ESPSettings.PlayerESP.FaceCamOn, function(v)
+    ESPSettings.PlayerESP.FaceCamOn = v
+    ESPFramework.FaceCamera = ESPSettings.PlayerESP.FaceCamOn
+end)
+
+esp:CreateToggle("Box ESP", ESPSettings.PlayerESP.BoxesOn, function(v)
+    ESPSettings.PlayerESP.BoxesOn = v
+    ESPFramework.Boxes = ESPSettings.PlayerESP.BoxesOn
+end)
+
+esp:CreateToggle("Tracers ESP", ESPSettings.PlayerESP.TracersOn, function(v)
+    ESPSettings.PlayerESP.TracersOn = v
+    ESPFramework.Tracers = ESPSettings.PlayerESP.TracersOn
+end)
+
+esp:CreateToggle("Name ESP", ESPSettings.PlayerESP.NamesOn, function(v)
+    ESPSettings.PlayerESP.NamesOn = v
+    ESPFramework.Names = ESPSettings.PlayerESP.NamesOn
+end)
+
+esp:CreateToggle("Health ESP", ESPSettings.PlayerESP.HealthOn, function(v)
+    ESPSettings.PlayerESP.HealthOn = v
+    ESPFramework.Health = ESPSettings.PlayerESP.HealthOn
+end)
+
+esp:CreateToggle("Tool ESP", ESPSettings.PlayerESP.ToolOn, function(v)
+    ESPSettings.PlayerESP.ToolOn = v
+    ESPFramework.Tool = ESPSettings.PlayerESP.ToolOn
+end)
+
+esp:CreateColorpicker("Distance ESP", ESPFramework.DistanceColor, function(V)
+   ESPFramework.DistanceColor = V
+   ESPSettings.DistanceColor = V
+end)
+
